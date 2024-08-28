@@ -1,0 +1,12 @@
+.navbar {
+    background-color: #a6dced;
+}
+
+.navbar-nav, .navbar-toggler{
+    margin-right: 40px;
+}
+
+
+.nav-link:hover {
+    color: white;
+}
