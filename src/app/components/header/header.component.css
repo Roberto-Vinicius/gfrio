@@ -1,12 +1,26 @@
 .navbar {
+    padding: 10px 0px;
     background-color: #a6dced;
+}
+
+.navbar-brand {
+    margin-left: 20px;
+    display: flex;
+    align-items: center;
 }
 
 .navbar-nav, .navbar-toggler{
     margin-right: 40px;
 }
 
-
 .nav-link:hover {
     color: white;
+}
+
+@media (max-width: 991px) {
+    .navbar-nav {
+        display: flex;
+        align-items: center;
+
+    }    
 }
