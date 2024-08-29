@@ -1,6 +1,12 @@
+footer {
+  background-color: #B0BEC5;
+  position: absolute;
+  width: 100%;
+}
+
 .icon {
   font-size: 30px;
-  color: #B0BEC5; /* Azul Gelo */
+  color: #000; /* Azul Gelo */
 }
 
 .icon:hover {
@@ -9,7 +15,7 @@
 }
 
 .text-body-secondary a {
-  color: #B0BEC5; /* Cinza Aço */
+  color: #000; /* Cinza Aço */
   text-decoration: none;
   transition: color 0.2s ease;
 }

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -8,6 +9,8 @@ import { HeaderComponent } from './components/header/header.component';
 import { SobreComponent } from './components/pages/sobre/sobre.component';
 import { HomeComponent } from './components/pages/home/home.component';
 import { ServicoComponent } from './components/pages/servico/servico.component';
+import { FormContatoComponent } from './components/form-contato/form-contato.component';
+import { ClientesComponent } from './components/pages/clientes/clientes.component';
 
 @NgModule({
   declarations: [
@@ -16,11 +19,14 @@ import { ServicoComponent } from './components/pages/servico/servico.component';
     FooterComponent,
     HomeComponent,
     SobreComponent,
-    ServicoComponent
+    ServicoComponent,
+    FormContatoComponent,
+    ClientesComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
