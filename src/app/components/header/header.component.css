@@ -1,6 +1,6 @@
 .navbar {
     padding: 10px 0px;
-    background-color: #a6dced;
+    background-color: #B0BEC5;
 }
 
 .navbar-brand {
@@ -21,6 +21,5 @@
     .navbar-nav {
         display: flex;
         align-items: center;
-
     }    
 }

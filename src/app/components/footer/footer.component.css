@@ -1,0 +1,21 @@
+.icon {
+  font-size: 30px;
+  color: #B0BEC5; /* Azul Gelo */
+}
+
+.icon:hover {
+  color: #0277BD;
+  transition: color .2s ease-in-out;
+}
+
+.text-body-secondary a {
+  color: #B0BEC5; /* Cinza Aço */
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.text-body-secondary a:hover {
+  color: #0277BD; /* Azul Profundo */
+  text-decoration: none;
+}
+
