@@ -1,23 +1,46 @@
-.containerHome {
-    display: flex;
-    text-align: center;
-    flex-direction: column;
-    width: 95vw;
-    height: 100%;
+/* Efeito Parallax */
+.parallax {
+    height: 600px;
+    width: 98vw;
+    background-image: url('/assets/cameraF.jfif');
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
-.servico {
-
+/* Estilo do Texto sobre o Parallax */
+.parallax-text {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 1);
 }
 
-.sobre {
-
+.parallax-title {
+    font-size: 3.5rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+    letter-spacing: 2px;
+    color:#B0BEC5;
 }
 
-.clientes {
-
+.parallax-subtitle {
+    font-size: 1.5rem;
+    margin: 0;
+    font-style: italic;
+    letter-spacing: 1px;
+    color: #FFFFFF; 
 }
 
-.form {
+/* Ajuste para telas menores */
+@media (max-width: 768px) {
+    .parallax-title {
+        font-size: 2.5rem;
+    }
 
+    .parallax-subtitle {
+        font-size: 1.2rem;
+        margin-right: 1rem;
+    }
 }

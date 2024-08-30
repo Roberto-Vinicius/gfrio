@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HomeComponent } from './components/pages/home/home.component';
+import { FullPagesComponent } from './components/pages/full-pages/full-pages.component';
 const routes: Routes = [
-  { path: '', component: HomeComponent }
+  { path: '', component: FullPagesComponent }
 ];
 
 @NgModule({

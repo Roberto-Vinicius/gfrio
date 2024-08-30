@@ -1,3 +1,27 @@
 #servicos {
-  margin-top: 100px;
+    background-color: #003466;
+    color: #fff;
+    width: 98vw;
 }
+
+.img-fluid.rounded-circle {
+    width: 150px; /* Ajuste conforme necessário */
+    height: 150px; /* Mantém a proporção redonda */
+}  
+
+/* Adiciona uma sombra ao botão e aumenta o padding */
+.btn-outline-dark {
+    padding: 10px 20px;
+    border-width: 2px;
+    font-size: 16px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+  }
+  
+  .btn-outline-dark:hover {
+    background-color: #343a40; /* Cor de fundo escura ao passar o mouse */
+    color: #fff; /* Texto branco ao passar o mouse */
+    border-color: #343a40; /* Borda escura ao passar o mouse */
+  }
+  

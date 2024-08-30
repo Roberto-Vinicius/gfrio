@@ -11,6 +11,7 @@ import { HomeComponent } from './components/pages/home/home.component';
 import { ServicoComponent } from './components/pages/servico/servico.component';
 import { FormContatoComponent } from './components/form-contato/form-contato.component';
 import { ClientesComponent } from './components/pages/clientes/clientes.component';
+import { FullPagesComponent } from './components/pages/full-pages/full-pages.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { ClientesComponent } from './components/pages/clientes/clientes.componen
     SobreComponent,
     ServicoComponent,
     FormContatoComponent,
-    ClientesComponent
+    ClientesComponent,
+    FullPagesComponent
   ],
   imports: [
     BrowserModule,

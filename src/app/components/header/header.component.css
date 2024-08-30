@@ -1,20 +1,59 @@
 .navbar {
     padding: 10px 0px;
-    background-color: #B0BEC5;
+    background-color: #003466;
 }
 
 .navbar-brand {
     margin-left: 20px;
     display: flex;
     align-items: center;
+    color: #F56300;
+}
+
+.bi {
+    font-size: 30px;
 }
 
 .navbar-nav, .navbar-toggler{
     margin-right: 40px;
 }
 
+.navbar-toggler {
+    border: 2px solid #F56300; /* Laranja para a borda */
+    background-color: transparent; /* Fundo transparente */
+    padding: 0.5rem; /* Ajuste o padding conforme necessário */
+}
+
+.navbar-toggler:focus {
+    outline: none; /* Remove a borda de foco padrão */
+    box-shadow: 0 0 0 2px #F56300; /* Adiciona uma borda laranja ao focar */
+}
+
+.navbar-toggler-icon {
+    background-image: url('data:image/svg+xml;charset=utf8,<svg fill="%23F56300" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3 6h18v2H3zm0 4h18v2H3zm0 4h18v2H3z"/></svg>');
+    background-size: 1.5em; /* Ajuste o tamanho do ícone */
+    background-repeat: no-repeat; /* Não repetir o ícone */
+    background-position: center; /* Centraliza o ícone */
+}
+
+
+.nav-link {
+    color: #fff;
+    transition: color 0.3s; /* Transição suave para a cor */
+}
+
 .nav-link:hover {
-    color: white;
+    color: #F56300;
+}
+
+.btn-outline-dark {
+    border-color: #fff; /* Laranja para a borda */
+    color: #fff; /* Laranja para o texto */
+    transition: background-color 0.3s, color 0.3s; /* Transição suave */
+}
+
+.btn-outline-dark:hover {
+    background-color: #F56300; /* Laranja para o fundo */
 }
 
 @media (max-width: 991px) {
