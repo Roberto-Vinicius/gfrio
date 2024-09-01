@@ -10,7 +10,7 @@ footer {
 }
 
 .icon:hover {
-  color: #0277BD;
+  color: #003466;
   transition: color .2s ease-in-out;
 }
 
@@ -21,6 +21,6 @@ footer {
 }
 
 .text-body-secondary a:hover {
-  color: #0277BD; /* Azul Profundo */
+  color: #003466; /* Azul Profundo */
   text-decoration: none;
 }
