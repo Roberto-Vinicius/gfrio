@@ -1,0 +1,48 @@
+#sobre {
+  text-align: center;
+  justify-content: center;
+  height: 90vh;
+  width: 100%;
+}
+
+.info {
+  margin: 40px 0 0 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 10px;
+}
+
+.logo {
+  margin-bottom: 20px;
+  border: 5px solid #F56300; 
+  border-radius: 8px; /* Faz a borda ser circular */
+  object-fit: cover; /* Garante que a imagem mantenha sua proporção dentro do círculo */
+}
+
+.tec {
+  max-width: 600px;
+  width: 100%;
+}
+
+@media (max-width: 900px) {
+  #sobre {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .info {
+    margin: 20px 0;
+    align-items: center;
+    text-align: center;
+  }
+
+  .info p {
+    max-width: 300px;
+  }
+
+  .tec {
+    display: none;
+  }
+}

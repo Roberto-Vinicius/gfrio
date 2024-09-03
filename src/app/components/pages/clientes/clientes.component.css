@@ -1,0 +1,39 @@
+#carouselClientes {
+  background-color: #003466;
+  color: #fff;
+  height: 80vh; /* Removi a duplicidade da propriedade height */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.carousel-inner img {
+  max-height: 60vh; /* Garantindo que a imagem se ajuste bem dentro do carrossel */
+  border-radius: 50%; /* Mantém a imagem circular */
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  background-color: #F56300;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+}
+
+/* Centralizando os indicadores na horizontal */
+.carousel-indicators {
+  margin-top: 30px;
+  margin-left: 50%;
+  transform: translateX(-50%);
+  list-style: none;
+}
+
+.carousel-indicators li {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #fff;
+}
+
+

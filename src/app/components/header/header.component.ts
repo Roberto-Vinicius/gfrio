@@ -11,7 +11,19 @@ export class HeaderComponent {
   constructor(private elementRef: ElementRef) {}
 
   scrollToSection(section: string) {
-    document.getElementById(section)?.scrollIntoView({ behavior: 'smooth' });
+    const element = document.getElementById(section);
+    if (element) {
+      const headerOffset = 50;
+      setTimeout(() => {
+        const elementPosition = element.getBoundingClientRect().top + window.scrollY;
+        const offsetPosition = elementPosition - headerOffset;
+
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth'
+        });
+      }, 100);
+    }
   }
 
   @HostListener('document:click', ['$event'])

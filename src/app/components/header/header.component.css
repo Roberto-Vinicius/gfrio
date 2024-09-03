@@ -1,6 +1,8 @@
 .navbar {
     padding: 10px 0px;
     background-color: #003466;
+    margin-bottom: 60px;
+    z-index: 1030;
 }
 
 .navbar-brand {

@@ -1,12 +1,14 @@
 /* Efeito Parallax */
 .parallax {
     height: 600px;
-    width: 98vw;
+    min-width: 98vw;
     background-image: url('/assets/cameraF.jfif');
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    box-sizing: border-box;
+    overflow: hidden;
 }
 
 /* Estilo do Texto sobre o Parallax */

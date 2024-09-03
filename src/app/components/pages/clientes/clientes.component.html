@@ -1,4 +1,30 @@
-<h1>Nossos Clientes</h1>
-<p>
-    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Veniam, debitis nulla voluptatem laboriosam, necessitatibus quod est commodi nemo at, fuga reiciendis libero tempore sapiente accusamus. Laudantium quaerat architecto nobis vero.
-</p>
+<div id="carouselClientes" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
+  <h1 class="text-center">Nossos Clientes</h1>
+  
+  <!-- Indicadores do Carrossel -->
+  <ol class="carousel-indicators">
+    <li *ngFor="let cliente of clientes; let i = index"
+        [class.active]="i === 0"
+        [attr.data-bs-slide-to]="i"
+        data-bs-target="#carouselClientes">
+    </li>
+  </ol>
+
+  <!-- Itens do Carrossel -->
+  <div class="carousel-inner">
+    <div *ngFor="let cliente of clientes; let i = index" class="carousel-item" [class.active]="i === 0">
+      <h3 class="text-center">{{ cliente.titulo }}</h3>
+      <img [src]="cliente.imagem" class="d-block img-fluid rounded-circle mx-auto" [alt]="cliente.titulo">
+    </div>
+  </div>
+
+  <!-- Controles do Carrossel -->
+  <a class="carousel-control-prev" href="#carouselClientes" role="button" data-bs-slide="prev" aria-label="Previous">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Anterior</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselClientes" role="button" data-bs-slide="next" aria-label="Next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Próximo</span>
+  </a>
+</div>
