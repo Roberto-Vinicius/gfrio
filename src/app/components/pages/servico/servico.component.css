@@ -1,16 +1,61 @@
+/* Estilos gerais para a seção #servicos */
 #servicos {
-    background-color: #003466;
-    color: #fff;
-    min-width: 98vw;
+  background-color: #003466;
+  color: #fff;
+  min-width: 98vw;
+  padding: 50px 15px;
 }
 
-.img-fluid.rounded-circle {
-    width: 150px; /* Ajuste conforme necessário */
-    height: 150px; /* Mantém a proporção redonda */
-}  
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%; /* Faz os cards preencherem toda a altura do contêiner */
+  border: 2px solid #fff; /* Adiciona uma borda leve ao card */
+  border-radius: 8px; /* Arredonda os cantos do card */
+  background-color: #B0BEC5; /* Define a cor de fundo do card */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Adiciona uma sombra suave ao card */
+  padding: 20px; /* Adiciona padding interno */
+}
 
-/* Adiciona uma sombra ao botão e aumenta o padding */
-.btn-outline-dark {
+/* Estilos para as imagens dentro dos cards */
+.img-fluid.rounded-circle {
+  width: 200px; /* Limite máximo */
+  height: 200px; /* Mantém a proporção */
+  border: #fff 1px solid;
+  object-fit: cover; /* Garante que a imagem mantenha sua proporção */
+}
+
+/* Estilos para os títulos dos serviços */
+.services h4 {
+  background-color: #fff;
+  border-radius: 5px;
+  padding: 10px; /* Aumenta o padding para melhor espaçamento */
+  margin-bottom: 20px;
+  font-size: 24px;
+  font-weight: bold;
+  color: #000;
+}
+
+/* Estilos para as listas dentro dos cards */
+.services ul {
+  list-style-type: none; /* Remove o estilo padrão da lista */
+  padding-left: 0;
+  text-align: center;
+  color: #fff;
+}
+
+.services ul li {
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 10px 20px; /* Aumenta o padding interno */
+  font-size: 16px; /* Tamanho da fonte */
+  margin-bottom: 10px; /* Espaçamento entre os itens */
+  color: #000;
+}
+
+/* Estilos para o botão */
+.btn-outline-light {
   padding: 10px 20px;
   border-width: 2px;
   font-size: 16px;
@@ -18,10 +63,59 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   transition: background-color 0.3s, color 0.3s, border-color 0.3s;
 }
-  
-.btn-outline-dark:hover {
-  background-color: #343a40; /* Cor de fundo escura ao passar o mouse */
+
+.btn-outline-light:hover {
+  background-color: #F56300; /* Cor de fundo ao passar o mouse */
   color: #fff; /* Texto branco ao passar o mouse */
-  border-color: #343a40; /* Borda escura ao passar o mouse */
+  border-color: #fff; /* Borda ao passar o mouse */
 }
-  
+
+/* Media Queries para Responsividade */
+
+/* Ajustes para telas médias */
+@media (max-width: 992px) {
+  .services h4 {
+    font-size: 22px;
+  }
+
+  .services ul li {
+    font-size: 15px;
+  }
+}
+
+/* Ajustes para telas pequenas */
+@media (max-width: 768px) {
+  .services h4 {
+    font-size: 20px;
+  }
+
+  .services ul li {
+    font-size: 14px;
+  }
+
+  .col-md-4 {
+    margin-bottom: 30px;
+  }
+
+  .services .row {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+/* Ajustes para telas muito pequenas */
+@media (max-width: 576px) {
+  .services h4 {
+    font-size: 18px;
+  }
+
+  .services ul li {
+    font-size: 13px;
+  }
+
+  .btn-outline-light {
+    font-size: 14px;
+    padding: 8px 16px;
+  }
+
+}

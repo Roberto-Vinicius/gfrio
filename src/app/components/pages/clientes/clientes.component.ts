@@ -8,24 +8,39 @@ import { Component } from '@angular/core';
 export class ClientesComponent {
   clientes = [
     {
-      titulo: 'Cliente 1',
-      imagem: 'assets/aguia.png'
+      titulo: 'Colégio e Curso',
+      imagem: 'assets/clientes/over.png',
+      descricao: ""
     },
     {
-      titulo: 'Cliente 2',
-      imagem: 'assets/fenix.png' 
+      titulo: 'Grupo Sal e Brasa',
+      imagem: 'assets/clientes/logo-sal-e-brasa.png',
+      descricao: ""
     },
     {
-      titulo: 'Cliente 3',
-      imagem: 'assets/fogo.png'
+      titulo: 'Super Fácil',
+      imagem: 'assets/clientes/logo_superfacil.png',
+      descricao: "Unidade Emaús"
     },
     {
-      titulo: 'Cliente 4',
-      imagem: 'assets/peixe.png'
+      titulo: 'Queiros Atacado',
+      imagem: 'assets/clientes/queiros_atacado.png',
+      descricao: "Unidade São Gonçalo do Amarante"
     },
     {
-      titulo: 'Cliente 5',
-      imagem: 'assets/tigre.png'
+      titulo: 'Grupo Ster Bom',
+      imagem: 'assets/clientes/ster_bom.jpg',
+      descricao: ""
+    },
+    {
+      titulo: 'Grupo Multigiro',
+      imagem: 'assets/clientes/multigiro.png',
+      descricao: ""
+    },
+    {
+      titulo: 'Bom Frio',
+      imagem: 'assets/clientes/bom_frio.png',
+      descricao: "Shopping Cidade Verde"
     },
   ];
 }

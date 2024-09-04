@@ -2,15 +2,35 @@ footer {
   background-color: #B0BEC5;
   position: absolute;
   width: 100%;
+  text-align: center;
+}
+
+footer h3 {
+  font-weight: bold;
+}
+
+.btn {
+  color: #003466;
+  font-weight: bold;
+}
+
+.btn a {
+  text-decoration: none;
+}
+
+.btn:hover {
+  background-color: #F56300; /* Cor de fundo ao passar o mouse */
+  color: #003466; /* Cor do texto ao passar o mouse */
+  border-color: #000; /* Cor da borda ao passar o mouse */
 }
 
 .icon {
-  font-size: 30px;
+  font-size: 35px;
   color: #000; /* Azul Gelo */
 }
 
 .icon:hover {
-  color: #003466;
+  color: #F56300;
   transition: color .2s ease-in-out;
 }
 
@@ -21,7 +41,7 @@ footer {
 }
 
 .text-body-secondary a:hover {
-  color: #003466; /* Azul Profundo */
+  color: #003466; 
   text-decoration: none;
 }
 

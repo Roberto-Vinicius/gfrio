@@ -9,16 +9,14 @@
 }
 
 .carousel-inner img {
-  max-height: 60vh; /* Garantindo que a imagem se ajuste bem dentro do carrossel */
-  border-radius: 50%; /* Mantém a imagem circular */
+  max-height: 60vh; 
 }
 
 .carousel-control-prev-icon,
 .carousel-control-next-icon {
   background-color: #F56300;
-  border-radius: 50%;
-  width: 50px;
-  height: 50px;
+  max-width: 50px;
+  max-height: 50px;
 }
 
 /* Centralizando os indicadores na horizontal */

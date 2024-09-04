@@ -1,4 +1,8 @@
 /* Efeito Parallax */
+#home {
+    height: 90vh;
+}
+
 .parallax {
     height: 600px;
     min-width: 98vw;

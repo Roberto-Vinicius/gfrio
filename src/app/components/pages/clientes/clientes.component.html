@@ -1,5 +1,5 @@
 <div id="carouselClientes" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
-  <h1 class="text-center">Nossos Clientes</h1>
+  <h1 class="text-center">NOSSOS CLIENTES</h1>
   
   <!-- Indicadores do Carrossel -->
   <ol class="carousel-indicators">
@@ -14,7 +14,8 @@
   <div class="carousel-inner">
     <div *ngFor="let cliente of clientes; let i = index" class="carousel-item" [class.active]="i === 0">
       <h3 class="text-center">{{ cliente.titulo }}</h3>
-      <img [src]="cliente.imagem" class="d-block img-fluid rounded-circle mx-auto" [alt]="cliente.titulo">
+      <img [src]="cliente.imagem" class="d-block img-fluid mx-auto" [alt]="cliente.titulo">
+      <h4> {{ cliente.descricao }} </h4>
     </div>
   </div>
 
