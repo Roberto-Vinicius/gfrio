@@ -1,8 +1,7 @@
 /* Estilos gerais para a seção #servicos */
 #servicos {
-  background-color: #003466;
-  color: #fff;
-  min-width: 98vw;
+  color: #000;
+  width: 100%;
   padding: 50px 15px;
 }
 
@@ -13,17 +12,17 @@
   height: 100%; /* Faz os cards preencherem toda a altura do contêiner */
   border: 2px solid #fff; /* Adiciona uma borda leve ao card */
   border-radius: 8px; /* Arredonda os cantos do card */
-  background-color: #B0BEC5; /* Define a cor de fundo do card */
+  background-color: #003466; /* Define a cor de fundo do card */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Adiciona uma sombra suave ao card */
   padding: 20px; /* Adiciona padding interno */
 }
 
 /* Estilos para as imagens dentro dos cards */
-.img-fluid.rounded-circle {
-  width: 200px; /* Limite máximo */
+.img-fluid {
+  width: 400px; /* Limite máximo */
   height: 200px; /* Mantém a proporção */
-  border: #fff 1px solid;
-  object-fit: cover; /* Garante que a imagem mantenha sua proporção */
+  border-radius: 10px;
+  object-fit: cover; 
 }
 
 /* Estilos para os títulos dos serviços */
@@ -56,6 +55,7 @@
 
 /* Estilos para o botão */
 .btn-outline-light {
+  background-color: #003466;
   padding: 10px 20px;
   border-width: 2px;
   font-size: 16px;
@@ -67,7 +67,7 @@
 .btn-outline-light:hover {
   background-color: #F56300; /* Cor de fundo ao passar o mouse */
   color: #fff; /* Texto branco ao passar o mouse */
-  border-color: #fff; /* Borda ao passar o mouse */
+  border-color: #F56300; /* Borda ao passar o mouse */
 }
 
 /* Media Queries para Responsividade */

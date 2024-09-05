@@ -1,22 +1,30 @@
 #sobre {
-  text-align: center;
-  display: flex; /* Adicionado para flexbox */
-  justify-content: center; /* Centraliza o conteúdo horizontalmente */
-  align-items: center; /* Centraliza o conteúdo verticalmente */
-  height: 90vh; /* Altura de 90% da viewport */
-  width: 100%;
-  padding: 0 15px; /* Adiciona padding lateral para espaçamento */
+  height: 700px;
+  min-width: 98vw;
+  background-image: url('/assets/epis.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  box-sizing: border-box;
+  overflow: hidden;
 }
 
 /* Estilos para o bloco de informações */
 .info {
-  margin: 0; /* Remove margens para alinhamento melhor */
+  background-color: rgba(0, 52, 102, 0.6); 
+  color: #fff;
+  padding: 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  text-align: justify; /* Justifica o texto dentro do bloco */
-  gap: 10px; /* Espaçamento entre parágrafos */
+  text-align: justify;
+  gap: 10px;
+  border-radius: 30px;
+  backdrop-filter: blur(10px); /* Efeito de desfoque */
+  -webkit-backdrop-filter: blur(10px); /* Para suporte no Safari */
+  border: 1px solid rgba(255, 255, 255, 0.3); /* Borda semi-transparente para reforçar o efeito de vidro */
 }
+
 
 .logo {
   margin-bottom: 20px;
@@ -26,6 +34,23 @@
   max-width: 100%; /* Garante que a imagem não ultrapasse o contêiner */
   height: auto; /* Mantém a proporção da imagem */
 }
+
+.btn-outline-light {
+  background-color: #003466;
+  padding: 10px 20px;
+  border-width: 2px;
+  font-size: 16px;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}
+
+.btn-outline-light:hover {
+  background-color: #F56300; /* Cor de fundo ao passar o mouse */
+  color: #fff; /* Texto branco ao passar o mouse */
+  border-color: #F56300; /* Borda ao passar o mouse */
+}
+
 
 /* Ajustes para telas menores */
 @media (max-width: 900px) {

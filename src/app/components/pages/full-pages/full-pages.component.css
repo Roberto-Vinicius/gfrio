@@ -2,14 +2,18 @@
     display: flex;
     text-align: center;
     flex-direction: column;
-    width: 99vw;
-    height: 100%;
-    padding-top: 60px;
-    overflow-x: hidden;
+    max-width: 98.8vw; /* Garante que a largura não exceda o viewport */
+    width: 100vw; /* Faz com que a largura ocupe todo o viewport */
+    height: auto; /* Ajusta a altura conforme o conteúdo */
+    box-sizing: border-box; /* Garante que o padding seja incluído no tamanho total do contêiner */
+    margin: 0;
+    overflow-x: hidden; /* Evita a rolagem lateral */
 }
 
-@media (max-width: 768px) {
+
+@media screen and (max-width: 767px) {
     .containerPages {
-        width: 99vw;
+        max-width: 96.6vw;
+        width: 100vw; /* Usa toda a largura da tela */
     }
 }
