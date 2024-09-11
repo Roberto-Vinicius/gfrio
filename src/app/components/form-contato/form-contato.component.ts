@@ -10,10 +10,12 @@ import { EmailService } from '../../email.service';
 })
 export class FormContatoComponent {
   contatoForm: FormGroup;
+  enviado: boolean = false; // Para controle de sucesso no envio
+  erroEnvio: boolean = false; // Para controle de erro no envio
 
   constructor(
     private formBuilder: FormBuilder,
-    private emailService: EmailService // Injeção do serviço de e-mail
+    private emailService: EmailService 
   ) {
     this.contatoForm = this.formBuilder.group({
       name: ['', [Validators.required, Validators.minLength(3)]],
@@ -32,11 +34,17 @@ export class FormContatoComponent {
     // Enviar os dados para o backend
     this.emailService.sendEmail(this.contatoForm.value).subscribe(
       (response: any) => {
-        console.log('E-mail enviado com sucesso!', response);
+        this.enviado = true; // Sucesso no envio
+        this.erroEnvio = false; // Limpa o erro se houver
+        console.log(response);
       },
       (error: any) => {
-        console.error('Erro ao enviar o e-mail:', error);
+        this.enviado = false;
+        this.erroEnvio = true; 
+        console.error(error);
       }
     );
+    // Limpa o form
+    this.contatoForm.reset();
   }
 }

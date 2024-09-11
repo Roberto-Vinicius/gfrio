@@ -39,5 +39,15 @@
         <button type="submit" class="btn btn-primary align-items-center w-50" [disabled]="contatoForm.invalid">Enviar</button>
       </div>
     </form>
+
+    <!-- Mensagem de sucesso -->
+    <div *ngIf="enviado" class="alert text-center alert-success mt-3">
+      E-mail enviado com sucesso!
+    </div>
+
+    <!-- Mensagem de erro -->
+    <div *ngIf="erroEnvio" class="alert text-center alert-danger mt-3">
+      Ocorreu um erro ao enviar o e-mail. Tente novamente.
+    </div>
   </div>
 </div>

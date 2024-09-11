@@ -9,7 +9,6 @@ app.use(bodyParser.json());
 
 app.post('/send-email', (req, res) => {
   const formData = req.body;
-  console.log("Dados recebidos: ", formData)
   // Configuração do transporte com o Nodemailer
   const transporter = nodemailer.createTransport({
     host: 'smtp.gmail.com',
