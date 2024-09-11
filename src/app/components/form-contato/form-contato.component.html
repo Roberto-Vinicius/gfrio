@@ -1,25 +1,42 @@
 <div class="formulario-container">
   <div class="formulario">
     <h1>Fale Conosco</h1>
-    <form class="row g-4">
+    <form [formGroup]="contatoForm" (ngSubmit)="onSubmit()" class="row g-4">
+
       <div class="col-md-4">
         <label for="name" class="form-label">Nome</label>
-        <input type="text" class="form-control" id="name" placeholder="Nome">
+        <input type="text" formControlName="name" name="name" class="form-control" id="name" placeholder="Nome">
+        <div *ngIf="contatoForm.get('name')?.invalid && contatoForm.get('name')?.touched" class="text-danger">
+          Nome é obrigatório e deve ter no mínimo 3 caracteres.
+        </div>
       </div>
+      
       <div class="col-md-4">
         <label for="email" class="form-label">Email</label>
-        <input type="email" class="form-control" id="email" placeholder="Email">
+        <input type="email" formControlName="email" name="email" class="form-control" id="email" placeholder="Email">
+        <div *ngIf="contatoForm.get('email')?.invalid && contatoForm.get('email')?.touched" class="text-danger">
+          Insira um email válido.
+        </div>
       </div>
+
       <div class="col-md-4">
         <label for="contato" class="form-label">Contato</label>
-        <input type="tel" class="form-control" id="contato" placeholder="Telefone">
+        <input type="tel" formControlName="contato" name="contato" class="form-control" id="contato" placeholder="Telefone">
+        <div *ngIf="contatoForm.get('contato')?.invalid && contatoForm.get('contato')?.touched" class="text-danger">
+          O contato deve conter apenas números.
+        </div>
       </div>
+
       <div class="col-12">
-        <label for="mensagem" class="form-label text-align-start">Mensagem</label>
-        <textarea class="form-control" id="mensagem" rows="5" placeholder="Sua mensagem"></textarea>
+        <label for="mensagem" class="form-label">Mensagem</label>
+        <textarea formControlName="mensagem" name="mensagem" class="form-control" id="mensagem" rows="5" placeholder="Sua mensagem"></textarea>
+        <div *ngIf="contatoForm.get('mensagem')?.invalid && contatoForm.get('mensagem')?.touched" class="text-danger">
+          Mensagem é obrigatória e deve ter no mínimo 10 caracteres.
+        </div>
       </div>
+
       <div class="botao">
-        <button type="submit" class="btn btn-primary align-items-center w-50">Enviar</button>
+        <button type="submit" class="btn btn-primary align-items-center w-50" [disabled]="contatoForm.invalid">Enviar</button>
       </div>
     </form>
   </div>

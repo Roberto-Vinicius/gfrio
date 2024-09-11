@@ -21,8 +21,8 @@ import { FullPagesComponent } from './components/pages/full-pages/full-pages.com
     FooterComponent,
     HomeComponent,
     SobreComponent,
-    ServicoComponent,
     FormContatoComponent,
+    ServicoComponent,
     ClientesComponent,
     FullPagesComponent
   ],

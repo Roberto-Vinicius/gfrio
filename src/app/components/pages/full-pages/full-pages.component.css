@@ -11,9 +11,8 @@
 }
 
 
-@media screen and (max-width: 767px) {
+@media (max-width: 767px) {
     .containerPages {
-        max-width: 96.6vw;
-        width: 100vw; /* Usa toda a largura da tela */
+        max-width: 98.8vw;
     }
 }
