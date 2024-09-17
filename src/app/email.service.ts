@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class EmailService {
-  private apiUrl = 'http://localhost:3000/send-email'; // URL do seu backend onde o Nodemailer está rodando
+  private apiUrl = 'http://localhost:3001/send-email'; // URL do seu backend onde o Nodemailer está rodando
 
   constructor(private http: HttpClient) {}
 
