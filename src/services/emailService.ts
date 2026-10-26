@@ -15,6 +15,7 @@ const API_BASE =
     ? 'http://localhost:3001'
     : '';
 const API_URL = `${API_BASE}/send-email`;
+const MESSAGES_API_URL = `${API_BASE}/api/messages`;
 const LOCAL_MESSAGES_KEY = 'gfrio_contact_messages_v1';
 
 export function getLocalMessages(): StoredMessage[] {
@@ -23,6 +24,33 @@ export function getLocalMessages(): StoredMessage[] {
     return raw ? JSON.parse(raw) : [];
   } catch {
     return [];
+  }
+}
+
+export async function fetchAllMessages(): Promise<StoredMessage[]> {
+  try {
+    const res = await fetch(MESSAGES_API_URL);
+    if (res.ok) {
+      const serverMessages: StoredMessage[] = await res.json();
+      return serverMessages;
+    }
+  } catch {
+    // Fallback para mensagens locais
+  }
+  return getLocalMessages();
+}
+
+export async function deleteStoredMessage(id: string): Promise<void> {
+  try {
+    const local = getLocalMessages().filter((m) => m.id !== id);
+    localStorage.setItem(LOCAL_MESSAGES_KEY, JSON.stringify(local));
+  } catch {
+    // ignore
+  }
+  try {
+    await fetch(`${MESSAGES_API_URL}/${id}`, { method: 'DELETE' });
+  } catch {
+    // ignore
   }
 }
 

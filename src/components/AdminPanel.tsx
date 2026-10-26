@@ -5,12 +5,17 @@ import {
   ServiceItem,
   ClientItem,
 } from '../context/SiteDataContext';
+import {
+  fetchAllMessages,
+  deleteStoredMessage,
+  StoredMessage,
+} from '../services/emailService';
 
 interface AdminPanelProps {
   onExitAdmin: () => void;
 }
 
-type AdminTab = 'settings' | 'services' | 'clients';
+type AdminTab = 'settings' | 'services' | 'clients' | 'messages';
 
 const AUTH_SESSION_KEY = 'gfrio_admin_authenticated';
 const ADMIN_PASSWORD_KEY = 'gfrio_admin_password';
@@ -47,6 +52,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({ onExitAdmin }) => {
 
   const [activeTab, setActiveTab] = useState<AdminTab>('settings');
   const [toast, setToast] = useState<string | null>(null);
+  const [messages, setMessages] = useState<StoredMessage[]>([]);
 
   // Settings form state
   const [settingsForm, setSettingsForm] = useState<CompanySettings>(
@@ -56,6 +62,12 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({ onExitAdmin }) => {
   useEffect(() => {
     setSettingsForm(siteData.settings);
   }, [siteData.settings]);
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      fetchAllMessages().then(setMessages);
+    }
+  }, [isAuthenticated, activeTab]);
 
   // Service modal/form state
   const [editingServiceId, setEditingServiceId] = useState<string | null>(null);
@@ -259,6 +271,12 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({ onExitAdmin }) => {
     }
   };
 
+  const handleDeleteMessage = async (id: string) => {
+    await deleteStoredMessage(id);
+    setMessages((prev) => prev.filter((m) => m.id !== id));
+    showNotification('Mensagem removida.');
+  };
+
   const handleReset = async () => {
     if (
       window.confirm(
@@ -404,7 +422,11 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({ onExitAdmin }) => {
           </div>
         )}
 
-        <div className="admin-tabs" role="tablist">
+        <div
+          className="admin-tabs"
+          role="tablist"
+          style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))' }}
+        >
           <button
             type="button"
             role="tab"
@@ -450,6 +472,22 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({ onExitAdmin }) => {
             <div>
               <strong>Clientes ({siteData.clients.length})</strong>
               <span>Adicionar ou remover logos e unidades</span>
+            </div>
+          </button>
+
+          <button
+            type="button"
+            role="tab"
+            aria-selected={activeTab === 'messages'}
+            className={`admin-tab ${
+              activeTab === 'messages' ? 'admin-tab--active' : ''
+            }`}
+            onClick={() => setActiveTab('messages')}
+          >
+            <i className="bi bi-envelope-paper-fill" aria-hidden="true" />
+            <div>
+              <strong>Solicitações ({messages.length})</strong>
+              <span>Mensagens enviadas pelo Fale Conosco</span>
             </div>
           </button>
         </div>
@@ -1008,6 +1046,152 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({ onExitAdmin }) => {
                 </article>
               ))}
             </div>
+          </section>
+        )}
+
+        {/* TAB 4: SOLICITAÇÕES / MENSAGENS RECEBIDAS */}
+        {activeTab === 'messages' && (
+          <section className="admin-panel-card">
+            <div className="admin-panel-card__header">
+              <div>
+                <h2>Caixa de Entrada · Solicitações de Orçamento</h2>
+                <p>
+                  Todas as mensagens enviadas pelo formulário Fale Conosco ficam
+                  registradas aqui para consulta e resposta imediata.
+                </p>
+              </div>
+            </div>
+
+            {messages.length === 0 ? (
+              <p style={{ color: 'var(--steel-muted)', padding: '1rem 0' }}>
+                Nenhuma solicitação recebida até o momento.
+              </p>
+            ) : (
+              <div
+                style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: '1rem',
+                }}
+              >
+                {messages.map((msg) => {
+                  const digits = (msg.contato || '').replace(/\D/g, '');
+                  const waReply = `https://api.whatsapp.com/send/?phone=55${digits}&text=${encodeURIComponent(
+                    `Olá ${msg.name}, recebemos sua solicitação de orçamento no site da GFRIO!`
+                  )}`;
+                  return (
+                    <article
+                      key={msg.id}
+                      style={{
+                        border: '1px solid var(--galvanized-steel)',
+                        borderLeft: '4px solid var(--gfrio-navy)',
+                        padding: '1.25rem',
+                        backgroundColor: 'var(--frost-alabaster)',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        gap: '0.65rem',
+                      }}
+                    >
+                      <div
+                        style={{
+                          display: 'flex',
+                          flexWrap: 'wrap',
+                          justifyContent: 'space-between',
+                          gap: '0.5rem',
+                        }}
+                      >
+                        <strong
+                          style={{
+                            fontFamily: 'var(--font-display)',
+                            fontSize: '1.1rem',
+                            color: 'var(--cryo-navy)',
+                          }}
+                        >
+                          {msg.name}
+                        </strong>
+                        <span
+                          style={{
+                            fontSize: '0.82rem',
+                            color: 'var(--steel-muted)',
+                          }}
+                        >
+                          {new Date(msg.createdAt).toLocaleString('pt-BR')}
+                        </span>
+                      </div>
+
+                      <div
+                        style={{
+                          display: 'flex',
+                          flexWrap: 'wrap',
+                          gap: '1.25rem',
+                          fontSize: '0.9rem',
+                        }}
+                      >
+                        <span>
+                          <strong>E-mail:</strong> {msg.email}
+                        </span>
+                        <span>
+                          <strong>Telefone/WhatsApp:</strong> {msg.contato}
+                        </span>
+                      </div>
+
+                      <p
+                        style={{
+                          backgroundColor: '#fff',
+                          padding: '0.85rem 1rem',
+                          border: '1px solid var(--galvanized-steel)',
+                          borderRadius: '3px',
+                        }}
+                      >
+                        {msg.mensagem}
+                      </p>
+
+                      <div
+                        style={{
+                          display: 'flex',
+                          flexWrap: 'wrap',
+                          gap: '0.65rem',
+                          marginTop: '0.25rem',
+                        }}
+                      >
+                        {digits && (
+                          <a
+                            href={waReply}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="admin-btn-secondary"
+                            style={{ flex: '0 0 auto' }}
+                          >
+                            <i className="bi bi-whatsapp" aria-hidden="true" />
+                            <span>Responder no WhatsApp</span>
+                          </a>
+                        )}
+                        <a
+                          href={`mailto:${msg.email}?subject=Retorno GFRIO Refrigeração Comercial`}
+                          className="admin-btn-secondary"
+                          style={{ flex: '0 0 auto' }}
+                        >
+                          <i
+                            className="bi bi-envelope-fill"
+                            aria-hidden="true"
+                          />
+                          <span>Responder por E-mail</span>
+                        </a>
+                        <button
+                          type="button"
+                          className="admin-btn-danger"
+                          style={{ flex: '0 0 auto' }}
+                          onClick={() => handleDeleteMessage(msg.id)}
+                        >
+                          <i className="bi bi-trash" aria-hidden="true" />
+                          <span>Excluir</span>
+                        </button>
+                      </div>
+                    </article>
+                  );
+                })}
+              </div>
+            )}
           </section>
         )}
       </div>

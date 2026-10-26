@@ -28,6 +28,36 @@ function saveMessage(entry) {
   fs.writeFileSync(MESSAGES_FILE, JSON.stringify(list, null, 2), 'utf-8');
 }
 
+async function sendViaHttpsRelay(formData) {
+  const params = new URLSearchParams({
+    _subject: `Contato de ${formData.name} - Site GFRIO`,
+    _template: 'table',
+    _captcha: 'false',
+    Nome: formData.name,
+    Email: formData.email,
+    Contato: formData.contato || '',
+    Mensagem: formData.mensagem,
+  });
+
+  const response = await fetch(
+    'https://formsubmit.co/ajax/robertoviniciusfoda@gmail.com',
+    {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+        Accept: 'application/json',
+        'User-Agent': 'Mozilla/5.0',
+        Origin: 'https://gfriorefrigeracao.com.br',
+        Referer: 'https://gfriorefrigeracao.com.br/',
+      },
+      body: params.toString(),
+    }
+  );
+
+  const data = await response.json();
+  return data;
+}
+
 // Endpoint para leitura dos dados configuráveis do site (Admin)
 app.get('/api/site-data', (req, res) => {
   if (!fs.existsSync(DATA_FILE)) {
@@ -62,14 +92,20 @@ app.get('/api/messages', (req, res) => {
   return res.status(200).json(readMessages());
 });
 
-app.post('/send-email', (req, res) => {
+// Endpoint para excluir uma mensagem no Admin
+app.delete('/api/messages/:id', (req, res) => {
+  const next = readMessages().filter((m) => m.id !== req.params.id);
+  fs.writeFileSync(MESSAGES_FILE, JSON.stringify(next, null, 2), 'utf-8');
+  return res.status(200).json({ status: 'ok' });
+});
+
+app.post('/send-email', async (req, res) => {
   const formData = req.body || {};
 
   if (!formData.name || !formData.email || !formData.mensagem) {
     return res.status(400).send('Dados obrigatórios ausentes.');
   }
 
-  // Registra a mensagem localmente para garantir que nenhum contato seja perdido
   const messageRecord = {
     id: `msg-${Date.now()}`,
     createdAt: new Date().toISOString(),
@@ -77,17 +113,33 @@ app.post('/send-email', (req, res) => {
     email: formData.email,
     contato: formData.contato || '',
     mensagem: formData.mensagem,
-    smtpDelivered: false,
+    deliveredVia: 'pending',
   };
 
-  // Configuração do transporte com o Nodemailer
+  // 1) Tenta disparo via HTTPS (porta 443) - funciona no Render Free e redes corporativas que bloqueiam porta 587
+  try {
+    const relayResult = await sendViaHttpsRelay(formData);
+    messageRecord.httpsRelay = relayResult;
+    if (relayResult && relayResult.success === 'true') {
+      messageRecord.deliveredVia = 'https-443';
+      saveMessage(messageRecord);
+      return res
+        .status(200)
+        .set('Content-Type', 'text/plain')
+        .send('E-mail enviado com sucesso!');
+    }
+  } catch (httpsErr) {
+    console.warn('Aviso HTTPS relay:', httpsErr.message);
+  }
+
+  // 2) Tenta disparo via SMTP tradicional (porta 587) caso a rede permita
   const transporter = nodemailer.createTransport({
     host: 'smtp.gmail.com',
     port: 587,
     secure: false,
-    connectionTimeout: 6000,
-    greetingTimeout: 5000,
-    socketTimeout: 8000,
+    connectionTimeout: 4500,
+    greetingTimeout: 4000,
+    socketTimeout: 5000,
     auth: {
       user: 'testrabalho10@gmail.com',
       pass: 'yaxj gixo amhb duuw',
@@ -96,19 +148,16 @@ app.post('/send-email', (req, res) => {
 
   const mailOptions = {
     from: `"GFRIO Site - ${formData.name}" <testrabalho10@gmail.com>`,
-    replyTo: formData.email, // E-mail do cliente para resposta direta
-    to: 'robertoviniciusfoda@gmail.com', // E-mail da empresa
+    replyTo: formData.email,
+    to: 'robertoviniciusfoda@gmail.com',
     subject: `Contato de ${formData.name} - Site GFRIO`,
     text: `Nome: ${formData.name}\nE-mail: ${formData.email}\nContato: ${formData.contato}\nMensagem: ${formData.mensagem}`,
   };
 
   transporter.sendMail(mailOptions, (error) => {
     if (error) {
-      console.warn(
-        'Aviso SMTP (porta 587 bloqueada na rede ou falha SMTP):',
-        error.code || error.message
-      );
       messageRecord.smtpError = error.code || error.message;
+      messageRecord.deliveredVia = 'saved-inbox';
       saveMessage(messageRecord);
       return res
         .status(200)
@@ -116,7 +165,7 @@ app.post('/send-email', (req, res) => {
         .send('Solicitação registrada com sucesso!');
     }
 
-    messageRecord.smtpDelivered = true;
+    messageRecord.deliveredVia = 'smtp-587';
     saveMessage(messageRecord);
     return res
       .status(200)
