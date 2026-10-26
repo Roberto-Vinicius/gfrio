@@ -10,7 +10,11 @@ export interface StoredMessage extends ContactFormData {
   createdAt: string;
 }
 
-const API_URL = 'http://localhost:3001/send-email';
+const API_BASE =
+  typeof window !== 'undefined' && window.location.port === '4200'
+    ? 'http://localhost:3001'
+    : '';
+const API_URL = `${API_BASE}/send-email`;
 const LOCAL_MESSAGES_KEY = 'gfrio_contact_messages_v1';
 
 export function getLocalMessages(): StoredMessage[] {

@@ -35,7 +35,11 @@ export interface SiteData {
 }
 
 const STORAGE_KEY = 'gfrio_site_data_v1';
-const API_DATA_URL = 'http://localhost:3001/api/site-data';
+const API_BASE =
+  typeof window !== 'undefined' && window.location.port === '4200'
+    ? 'http://localhost:3001'
+    : '';
+const API_DATA_URL = `${API_BASE}/api/site-data`;
 
 export const DEFAULT_SITE_DATA: SiteData = {
   settings: {

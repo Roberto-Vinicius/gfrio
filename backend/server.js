@@ -11,6 +11,7 @@ app.use(bodyParser.json({ limit: '15mb' }));
 
 const DATA_FILE = path.join(__dirname, 'site-data.json');
 const MESSAGES_FILE = path.join(__dirname, 'messages.json');
+const DIST_DIR = path.join(__dirname, '..', 'dist');
 
 function readMessages() {
   if (!fs.existsSync(MESSAGES_FILE)) return [];
@@ -109,7 +110,6 @@ app.post('/send-email', (req, res) => {
       );
       messageRecord.smtpError = error.code || error.message;
       saveMessage(messageRecord);
-      // Ainda retorna 200 pois a solicitação foi registrada com sucesso no servidor
       return res
         .status(200)
         .set('Content-Type', 'text/plain')
@@ -125,7 +125,15 @@ app.post('/send-email', (req, res) => {
   });
 });
 
-const PORT = process.env.PORT || 3001;
-app.listen(PORT, () => {
-  console.log(`Servidor backend GFRIO rodando na porta ${PORT}`);
+// Serve o front-end compilado (dist/) em produção (Render, etc.)
+if (fs.existsSync(DIST_DIR)) {
+  app.use(express.static(DIST_DIR));
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(DIST_DIR, 'index.html'));
+  });
+}
+
+const PORT = Number(process.env.PORT) || 3001;
+app.listen(PORT, '0.0.0.0', () => {
+  console.log(`Servidor GFRIO rodando em 0.0.0.0:${PORT}`);
 });
