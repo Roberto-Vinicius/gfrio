@@ -47,8 +47,8 @@ async function sendViaHttpsRelay(formData) {
         'Content-Type': 'application/x-www-form-urlencoded',
         Accept: 'application/json',
         'User-Agent': 'Mozilla/5.0',
-        Origin: 'https://gfriorefrigeracao.com.br',
-        Referer: 'https://gfriorefrigeracao.com.br/',
+        Origin: 'https://gfrio.onrender.com',
+        Referer: 'https://gfrio.onrender.com/',
       },
       body: params.toString(),
     }
