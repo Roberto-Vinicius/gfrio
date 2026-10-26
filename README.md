@@ -1,27 +1,15 @@
-# Gfrio
+# GFRIO Refrigeração Comercial
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.8.
+Aplicação web institucional da **GFRIO Refrigeração Comercial**, desenvolvida em **React + TypeScript + Vite** com backend de envio de e-mails em **Node.js + Express + Nodemailer**.
 
-## Development server
+## Servidor de Desenvolvimento (Front-end)
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Execute `npm run dev` (ou `npm start`) para iniciar o servidor de desenvolvimento Vite. Acesse `http://localhost:4200/`.
 
-## Code scaffolding
+## Servidor de E-mail (Back-end)
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Execute `npm run server` (ou `node backend/server.js`) para iniciar a API de envio de formulário na porta `3001` (`http://localhost:3001/send-email`).
 
-## Build
+## Build de Produção
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Execute `npm run build` para compilar o TypeScript e gerar os artefatos otimizados de produção no diretório `dist/`.

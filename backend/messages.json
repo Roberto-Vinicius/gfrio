@@ -1,0 +1,12 @@
+[
+  {
+    "id": "msg-1793028493095",
+    "createdAt": "2026-10-26T15:28:13.095Z",
+    "name": "Roberto Vinicius",
+    "email": "robertovinicius1030@gmail.com",
+    "contato": "84994056581",
+    "mensagem": "queria um orçamento",
+    "smtpDelivered": false,
+    "smtpError": "ESOCKET"
+  }
+]
